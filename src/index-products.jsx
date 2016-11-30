@@ -23,7 +23,7 @@ class SearchBar extends React.Component {
     };
 
     handleClick(e) {
-        this.props.onShowOnlyStock(e.target.checked);
+        this.props.onShowOnlyStocked(e.target.checked);
     };
 
     render() {
@@ -149,7 +149,7 @@ class App extends React.Component {
         return (
             <div>
                 <SearchBar onSearch={this.search}
-                    onShowOnlyStock={this.showOnlyStocked}/>
+                    onShowOnlyStocked={this.showOnlyStocked}/>
                 <ProductTable products={this.state.products} />
             </div>
         );
