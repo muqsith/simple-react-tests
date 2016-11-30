@@ -4,3 +4,42 @@
     color: white;
     padding: 5px;
 }
+
+.category {
+  text-align: left;
+  font-weight: bold;
+  padding: 10px;
+  font-style: italic;
+}
+
+.outofstock{
+  color: red;
+}
+
+.searchField{
+  margin: 10px;
+}
+
+.showOnlyStockedCheckBox{
+
+}
+
+.showOnlyStockedLabel{
+
+}
+
+table {
+  margin: 10px;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  background: grey;
+  color: white;
+  min-width: 100px;
+}
+
+td{
+  padding: 5px;
+}

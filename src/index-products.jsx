@@ -1,8 +1,12 @@
+// Rename this file to index.js and then run npm start and go check browser
+// http://localhost:8888/
+
 import React from 'react';
 import ReactDOM from 'react-dom';
+import styles from './index.scss';
 
 
-const data = [
+const PRODUCTS = [
   {category: "Sporting Goods", price: "$49.99", stocked: true, name: "Football"},
   {category: "Sporting Goods", price: "$29.99", stocked: false, name: "Basketball"},
   {category: "Electronics", price: "$99.99", stocked: true, name: "iPod Touch"},
@@ -31,11 +35,15 @@ class SearchBar extends React.Component {
             <div>
                 <input type="text" placeholder="Search..."
                     name="search"
-                    onChange={this.handleChange} />
+                    onChange={this.handleChange}
+                    className={styles.searchField}/>
                 <br/>
-                <input type="checkbox" name="stock"
-                    onClick={this.handleClick}/>
-                <label>Only show products in stock</label>
+                <label className={styles.showOnlyStockedLabel}>
+                    <input type="checkbox" name="stock"
+                        onClick={this.handleClick}
+                        className={styles.showOnlyStockedCheckBox}/>
+                    Only show products in stock
+                </label>
             </div>
         );
     };
@@ -44,7 +52,7 @@ class SearchBar extends React.Component {
 function ProductCategory(props){
     return (
         <tr>
-            <td colSpan="2">{props.name}</td>
+            <td colSpan="2" className={styles.category}>{props.name}</td>
         </tr>
     );
 };
@@ -52,7 +60,9 @@ function ProductCategory(props){
 function Product(props){
     return (
         <tr>
-            <td>{props.product.name}</td>
+            <td className={ props.product.stocked ? '': styles.outofstock }>
+                {props.product.name}
+            </td>
             <td>{props.product.price}</td>
         </tr>
     );
@@ -115,8 +125,7 @@ class App extends React.Component {
         this.search = this.search.bind(this);
         this.showOnlyStocked = this.showOnlyStocked.bind(this);
 
-        this.state = { originalProducts: data,
-                filteredProducts: data.slice(0),
+        this.state = { filteredProducts: PRODUCTS.slice(0),
                 searchString: '', onlyStocked: false};
     };
 
@@ -131,7 +140,7 @@ class App extends React.Component {
     };
 
     filter() {
-        const result = this.state.originalProducts.slice(0).reduce(
+        const result = PRODUCTS.slice(0).reduce(
             (accumulatedProducts, product, index, array) => {
                 if(
                     (product.name.indexOf(this.state.searchString) !== -1)
