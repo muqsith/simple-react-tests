@@ -115,7 +115,8 @@ class App extends React.Component {
         this.search = this.search.bind(this);
         this.showOnlyStocked = this.showOnlyStocked.bind(this);
 
-        this.state = { data:data, products : data.slice(0),
+        this.state = { originalProducts: data,
+                filteredProducts: data.slice(0),
                 searchString: '', onlyStocked: false};
     };
 
@@ -130,7 +131,7 @@ class App extends React.Component {
     };
 
     filter() {
-        const result = this.state.data.slice(0).reduce(
+        const result = this.state.originalProducts.slice(0).reduce(
             (accumulatedProducts, product, index, array) => {
                 if(
                     (product.name.indexOf(this.state.searchString) !== -1)
@@ -142,7 +143,7 @@ class App extends React.Component {
                 }
             return accumulatedProducts;
         }, [])
-        this.setState({products : result});
+        this.setState({filteredProducts : result});
     }
 
     render() {
@@ -150,7 +151,7 @@ class App extends React.Component {
             <div>
                 <SearchBar onSearch={this.search}
                     onShowOnlyStocked={this.showOnlyStocked}/>
-                <ProductTable products={this.state.products} />
+                <ProductTable products={this.state.filteredProducts} />
             </div>
         );
     };
