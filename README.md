@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # react-webpack-babel
 Simple React Webpack Babel Starter Kit
 
@@ -88,3 +89,7 @@ npm run lint
 
 ### Contribute
 Please contribute to the project if you know how to make it better, including this README :)
+=======
+# simple-react-tests
+Lot's of React examples created while learning React
+>>>>>>> 013b6663d681be8f5ae1858b18cc1d46c51aa838
